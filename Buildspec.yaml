@@ -1,2 +1,29 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: Criação de recursos S3 na AWS atividade final DevOps
+
+Parameters:
+  CustomUserName:
+    Description: Usuario IAM
+    Type: String
+
+  CustomUserPassword:
+    Description: Senha IAM
+    Type: String
+    NoEcho: true
+
+Resources:
+  BucketS3:
+    Type: AWS::S3:Bucket
+    Properties:
+      BucketName: !Sub my-bucket-s3-${AWS::AccountId}
+
+  BucketUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: !Ref CustomUserName
+      LoginProfile:
+        Password: !Ref CustomUserPassword
+      ManagedPolicyArns:
+        - !Ref S3AccessPolicy
+
+
