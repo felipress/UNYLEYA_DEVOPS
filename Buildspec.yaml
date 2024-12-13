@@ -1,0 +1,2 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: Criação de recursos S3 na AWS atividade final DevOps
